@@ -5,6 +5,13 @@
 int dado[MAX];
 int topo;
 int op;
+typedef struct NO{
+	char nomeLivro[20];
+    char nomeAutor[30];
+    int codigo;
+    float preco;
+    struct NO *prox;
+ }NO;
 
 void exibir(void){
     if (topo == 0 )
@@ -26,7 +33,7 @@ void inserir(void){
           printf("A pilha esta cheia, OverFlow\n");
       }
       else {
-           printf("Digite o valor para entrar na pilha: \n");
+           printf("Digite o codigo do livro: \n");
            scanf("%d",&dado[topo]);
            topo++;
            } 

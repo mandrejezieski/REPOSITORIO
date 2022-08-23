@@ -1,99 +1,82 @@
-	#include <stdio.h>
-	#include <stdlib.h>
-	int topo, i ;
-	int op;
-	
-	
-	struct cadastro{
-		int idade, x;
-		char nome[30];
-		char cpf[11];
-	};
-	struct cadastro FILA[10];
-	
-	void exibir(void){
-		//cadastro FILA;
-	    if (topo == 0 )
-	    {
-	      printf("A pilha esta vazia\n");
-	    }
-	    else
-	    {
-	    //for(int i=0; i<10; i++)
-	    {
-	      printf("Na posicao %d temos %s %s %s\n",i, FILA[i].nome, FILA[i].cpf, FILA[i].idade);
-	     }
-	     }
-	     system("PAUSE");
-	}
-	
-	
-	void inserir(void){
-	    if (topo == 10){
-	          printf("A pilha esta cheia, OverFlow\n");
-	      }
-	      else {
-	      	    //for(int i=0; i<10; i++){
-				  
-	           printf("Digite o nome: \n");
-	           fflush(stdin);
-	           gets(FILA[i].nome);
-	           printf("Digite o cpf: \n");
-	           fflush(stdin);
-	           gets(FILA[i].cpf);
-	           printf("Digite a idadde: \n");
-	           fflush(stdin);
-	           scanf("%d", &FILA[i].idade);          
-	          
-			   topo++;
-	       }
-	         exibir();
-	
-	       
-	           
-	           //void remover(struct cadastro *algumacoisa, int *i,int *x);
-	       
-	    }
-	   
-	    if (topo==0){
-	           printf("A pilha esta vazia\n");     
-	                }
-	    else {
-		printf("Elemento %s removido\n",FILA[0].nome);
-	         for (int i=0;i<=10;i++){
-	             FILA[i].nome = x[i+1];
-	             }                 
-	         }    
-	    topo--;     
-	    exibir();
-	}
-	
-	int menu(){
-	    printf("-= Programa Fila em C =-\n\n");
-	    printf("   Para inserir digite      1\n");
-	    printf("   Para remover digite      2\n");
-	    printf("   Para exibir digite       3\n\n");
-	    printf("   Para sair                4\n");
-	    scanf("%d",&op);
-	    switch (op){
-	        case 1 : inserir(); 
-	             break;
-	        //case 2 : remover(FILA[i].nome);
-	          //   break;
-	        case 3 : exibir();  
-	             break;
-	           }
-	    return 0;
-	}
-	
-	
-	
-	int main(){
-		topo=0;
-	    while (op!=4){
-	          system("cls");
-	          menu();
-	          } 
-	
-		return 0;
-	}
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct no_{
+  int dado;
+  struct no_* prox;
+}no;
+
+typedef struct fila_{
+  no* inicio;
+  no* fim;
+}fila;
+
+no* criar_no (int a){
+  no* n;
+  n=(no*)malloc(sizeof(no));
+  n->dado=a;
+  return n;
+}
+fila* criar_fila(int a){
+  no* n;
+  fila* l;
+  n=criar_no(a);
+  l=(fila*)malloc(sizeof(fila));
+  l->inicio=n;
+  l->fim=n;
+  l->fim->prox=NULL;
+  return l;
+}
+
+void inserir( int a, fila* l){
+  no* n;
+  n=criar_no(a);
+  n->prox=NULL;
+  l->fim->prox=n;
+  l->fim=n;
+}
+
+void remover(fila* l){
+  if(l->inicio==NULL){
+    printf("fila Vazia!\n");
+  }else{
+    no* prev;
+    //printf("%i == %i\n",(int*)l->inicio->dado,a);
+    prev=l->inicio->prox;
+    *l->inicio=*prev;
+    free(prev);
+    }
+}
+
+void limpar_fila(fila* l){
+  free(l);
+}
+
+void imprimir(fila* l){
+  if(l->inicio==NULL){
+    printf("fila Vazia!\n");
+  }else{
+    no* i;
+    for(i=l->inicio;i!=NULL;i=i->prox){
+      printf("%i, ",*(int*)i);
+    }
+    printf("\n");
+  }
+}
+int main () {
+  int x=13,y=9;
+  fila* l=NULL;
+  l=criar_fila(x);
+  imprimir(l);
+  printf("----------------------\n");
+  inserir(y,l);
+  imprimir(l);
+  remover(l);
+   printf("----------------------\n");
+   imprimir(l);
+  limpar_fila(l);
+  system("pause");
+  return 0;
+ 
+  
+}
