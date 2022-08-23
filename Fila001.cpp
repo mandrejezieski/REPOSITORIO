@@ -86,12 +86,14 @@ int main(){
 
 
 void menu(){
-	
+	int op = 9;
+	printf("\nDigite 0 para iniciar: \n");
+	scanf("%d",&op);
+	if(op == 9){
 	printf("\n-----------------------------------");
-	printf("\n             M.A.P.A. ;)");
+	printf("\n             M.A.P.A. ");
 	printf("\nAluno: Misael Andrejezieski");
 	printf("\nR.A.: 2018609-5");
-    printf("\n-----------------------------------");
     
     printf("\n-----------------------------------");
 	void imprimeFila(FILA *f);
@@ -103,6 +105,8 @@ void menu(){
     printf("\n\t4. Esvaziar a Fila");
     printf("\n\t5. Sair");
     printf("\n-----------------------------------");
+	}
+	
 }
 
 void inicializaFila(FILA *f){
@@ -130,6 +134,7 @@ void enfileira(char *nomeLivro, char *nomeAutor, int codigo,float preco,  FILA *
     
     f->fim = ptr;
     }
+    system("cls");
 }
 
 void desenfileira(FILA *f){
@@ -156,14 +161,15 @@ void imprimeFila(FILA *f){
             printf("\nCodigo do livro: %d", ptr->codigo);
             printf("\nNome do livro: %s", ptr->nomeLivro);
             printf("\nNome do autor: %s", ptr->nomeAutor);
-            printf("\nPreco do livro: R$ %f", ptr->preco);
+            printf("\nPreco do livro: R$ %.2f", ptr->preco);
             printf("\n*****************************");
             ptr = ptr->prox;
         }
 
-    } else {
+    }else{
         printf("\nFila Vazia!");
     }
+    
 }
 
 void limpaFila(FILA *f){
