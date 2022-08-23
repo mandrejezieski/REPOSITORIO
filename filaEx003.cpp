@@ -6,13 +6,11 @@ struct fila
 {
     int numeroelementos;
     int inicio;
-    int codigo;
-    float livro[TAMANHO];
-    char nomeLivro[20];
-    char nomeAutor[20];
+    float livros[TAMANHO];
+    char descricao[20];
     int quantidade;
-    float preco;
 };
+
 
 typedef struct fila Fila;
 
@@ -32,7 +30,7 @@ void inserir(Fila *f, float valor,char nam[20],int qtd)
         return;
     }
     int fim = (f->inicio + f->numeroelementos) % TAMANHO;
-    f->elementos[fim] = valor;
+    f->livros[fim] = valor;
    
   f->numeroelementos++;
 }
@@ -40,11 +38,12 @@ void inserir(Fila *f, float valor,char nam[20],int qtd)
 void retirar(Fila *f)
 {
     float valor;
-    if(f->numeroelementos == 0){
+    if(f->numeroelementos == 0)
+    {
         printf("fila vazia.\n");
         return;
-    }                                //retira o elemento da fila
-    valor =f->elementos[f->inicio];
+    } //retira o elemento da fila
+    valor =f->livros[f->inicio];
     f->inicio = (f->inicio + 1) % TAMANHO;
     f->numeroelementos--;
     printf("Elemento retirado = %.0f\n",valor);
@@ -60,7 +59,7 @@ void mostrarFila(Fila *f)
     printf("Conteudo da fila\n");
     int i;
     for(i = 0; i < f->numeroelementos; i++)
-        printf("%0.f\n",f->elementos[(f->inicio + i) % TAMANHO]);
+        printf("%0.f\n",f->livros[(f->inicio + i) % TAMANHO]);
     printf("\n");
 }
 
@@ -68,16 +67,18 @@ int main()
 {
     Fila *fila=criarFila();
     int opcao = -1;
-    float item;
-    int qtd;
-    char nome[20];
+
+    int codigo;
+    char nomelivro[20];
+    char nomeautor[30];
+    float preco;
 
     while(opcao != 0)
     {
         system("cls");
         printf("**** Escolha a opcao desejada **** \n");
-        printf("1. Enfilerar os livros\n");
-        printf("2. Desenfileirar livros\n");
+        printf("1. Enfilera livros\n");
+        printf("2. Retira livro\n");
         printf("3. Mostra a fila\n");
         printf("4. Destruir a fila\n");
         printf("0. Fim\n");
@@ -87,13 +88,14 @@ int main()
         {
         case 1 : //insere
             printf("Digite o codigo: ");
-            scanf("%i", &codigo);
+            scanf("%d", &codigo);
             printf("Digite o nome do livro: ");
-            //fflush(stdin);
-            gets(nomeLivro);
+            scanf("%s", &nomeLivro);
             printf("Digite o nome do autor: ");
             gets(nomeAutor);
-            inserir(fila,codigo,nomeLivro,nomeAutor);
+            printf("Digite o preco do livro: ");
+            scanf("%f", &preco);
+            inserir(fila,codigo,nomeLivro,nomeAutor,preco);
             break;
         case 2 : //retira
             retirar(fila);
@@ -101,9 +103,12 @@ int main()
         case 3 : //mostra
             mostrarFila(fila);
             break;
+        case 4 :
+        	destruirFila(fila);
+        	break;
         }//switch
         printf("\n");
         system("pause");
     }
-    destruirFila(fila);
+    
 }

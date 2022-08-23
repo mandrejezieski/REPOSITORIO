@@ -89,7 +89,7 @@ void menu(){
 	int op = 9;
 	printf("\nDigite 0 para iniciar: \n");
 	scanf("%d",&op);
-	if(op == 9){
+	while(op == 9){
 	printf("\n-----------------------------------");
 	printf("\n             M.A.P.A. ");
 	printf("\nAluno: Misael Andrejezieski");
