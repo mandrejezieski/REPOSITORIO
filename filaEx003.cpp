@@ -7,8 +7,8 @@ struct fila
     int numeroelementos;
     int inicio;
     float livros[TAMANHO];
-    char descricao[20];
-    int quantidade;
+    int codigo;
+    
 };
 
 
@@ -22,7 +22,7 @@ Fila *criarFila()
     return f;
 }
 
-void inserir(Fila *f, float valor,char nam[20],int qtd)
+void inserir(Fila *f, int codigo, char nomeLivro[20], char nomeAutor[30], float preco)
 {
     if(f->numeroelementos == TAMANHO)
     {
@@ -30,7 +30,7 @@ void inserir(Fila *f, float valor,char nam[20],int qtd)
         return;
     }
     int fim = (f->inicio + f->numeroelementos) % TAMANHO;
-    f->livros[fim] = valor;
+    f->livros[fim] ;
    
   f->numeroelementos++;
 }
@@ -60,6 +60,7 @@ void mostrarFila(Fila *f)
     int i;
     for(i = 0; i < f->numeroelementos; i++)
         printf("%0.f\n",f->livros[(f->inicio + i) % TAMANHO]);
+        printf(f->codigo);
     printf("\n");
 }
 
@@ -69,8 +70,8 @@ int main()
     int opcao = -1;
 
     int codigo;
-    char nomelivro[20];
-    char nomeautor[30];
+    char nomeLivro[20];
+    char nomeAutor[30];
     float preco;
 
     while(opcao != 0)
@@ -90,9 +91,9 @@ int main()
             printf("Digite o codigo: ");
             scanf("%d", &codigo);
             printf("Digite o nome do livro: ");
-            scanf("%s", &nomeLivro);
+            scanf("%s", nomeLivro);
             printf("Digite o nome do autor: ");
-            gets(nomeAutor);
+            scanf("%s", nomeAutor);
             printf("Digite o preco do livro: ");
             scanf("%f", &preco);
             inserir(fila,codigo,nomeLivro,nomeAutor,preco);

@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define tam 5
 
 typedef struct NO{
 	char nomeLivro[20];
@@ -69,7 +68,8 @@ int main(){
 
             case 5: 
                 //limpaFila(f1);
-                printf("\nPrograma finalizado =)");
+                printf("\nPrograma finalizado ;) \n");
+                system("pause");
                 exit(0);
                 break;
 
@@ -86,16 +86,13 @@ int main(){
 
 
 void menu(){
-	int op = 9;
-	printf("\nDigite 0 para iniciar: \n");
-	scanf("%d",&op);
-	while(op == 9){
-	printf("\n-----------------------------------");
+	
+	printf("\n");
 	printf("\n             M.A.P.A. ");
 	printf("\nAluno: Misael Andrejezieski");
 	printf("\nR.A.: 2018609-5");
     
-    printf("\n-----------------------------------");
+    printf("\n");
 	void imprimeFila(FILA *f);
 	
     printf("\n---- ---- ---- MENU ---- ---- ----");
@@ -104,13 +101,11 @@ void menu(){
     printf("\n\t3. Imprime lista de livros");
     printf("\n\t4. Esvaziar a Fila");
     printf("\n\t5. Sair");
-    printf("\n-----------------------------------");
-	}
-	
+    printf("\n");
 }
 
 void inicializaFila(FILA *f){
-    
+
     f->ini = NULL;
     f->fim = NULL;	
 	
@@ -118,6 +113,8 @@ void inicializaFila(FILA *f){
 
 void enfileira(char *nomeLivro, char *nomeAutor, int codigo,float preco,  FILA *f){
     NO *ptr = (NO*) malloc (sizeof(NO));
+    
+   
     if(ptr == NULL){
         printf("\nErro de Alocacao!");
     } else{
@@ -129,54 +126,69 @@ void enfileira(char *nomeLivro, char *nomeAutor, int codigo,float preco,  FILA *
         if(f->ini == NULL){
             f->ini = ptr;
         } else{
-            f->fim->prox = ptr;
+            f->fim->prox = ptr; 
         }
     
     f->fim = ptr;
+    printf("\nLivro %s", ptr->nomeLivro);
+    printf(" insirido na fila.\n");
     }
+    system("pause");
     system("cls");
 }
 
 void desenfileira(FILA *f){
     NO *ptr = f->ini;
+    
     if(ptr != NULL){
+    	printf("Livro %s", ptr->nomeLivro);
+    	printf(" DELETADO.\n");
         f->ini = ptr->prox;
         ptr->prox = NULL;
         free(ptr);
-        printf("Livro deletado!!!");
+        	system("pause");
+   			system("cls");
         if(f->ini == NULL){
-            f->fim = NULL;
+           f->fim = NULL;
+         
         }
     } else{
-        printf("\nFila Vazia!");
+        printf("\nFila Vazia.\n");
+        system("pause");
+        system("cls");
     }
-
 }
 
 void imprimeFila(FILA *f){
     NO *ptr = f->ini;
+    printf("     ----- LISTA DE LIVROS -----");
     if(ptr != NULL){
         while(ptr != NULL){
-            printf("\n*****************************");
+            printf("\n");
             printf("\nCodigo do livro: %d", ptr->codigo);
             printf("\nNome do livro: %s", ptr->nomeLivro);
             printf("\nNome do autor: %s", ptr->nomeAutor);
             printf("\nPreco do livro: R$ %.2f", ptr->preco);
-            printf("\n*****************************");
+            printf("\n\n");
             ptr = ptr->prox;
+            printf("     ----- ---- ----- -----\n");
+            
         }
 
     }else{
-        printf("\nFila Vazia!");
+        printf("\nFila Vazia.\n");
+        
     }
-    
+   		system("pause");
+        system("cls");
 }
 
 void limpaFila(FILA *f){
 
     NO *ptr = f->ini;
     NO *aux;
-
+	
+	 
     if(ptr != NULL){
         while(ptr != NULL){
             aux = ptr->prox;
@@ -186,8 +198,13 @@ void limpaFila(FILA *f){
 
         f->ini = NULL;
         f->fim = NULL;
-
+        printf("Lista envaziada.\n");
+		
     } else {
-        printf("\nFila Vazia!");
+        printf("\nFila Vazia!\n");
+        
     }
+    	system("pause");
+        system("cls");
+    
 }
