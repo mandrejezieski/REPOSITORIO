@@ -30,11 +30,6 @@ void inserir(Fila *f, float valor,char nam[20],int qtd)
     }
     int fim = (f->inicio + f->numeroelementos) % TAMANHO;
     f->elementos[fim] = valor;
-    f->descricao[fim]descricao= nam; 
-  //aqui dá o erro de f->descricao[fim]= nam;
-  //Warning: assignment makes integer from pointer without a cast [-Wint-conversion]
-    f->quantidade[fim]=qtd; 
-  //aqui da o erro: subscripted value is neither array nor pointer nor vector
    
   f->numeroelementos++;
 }
@@ -60,7 +55,7 @@ void destruirFila(Fila *f)
 
 void mostrarFila(Fila *f)
 {
-    printf("Conteúdo da fila\n");
+    printf("Conteudo da fila\n");
     int i;
     for(i = 0; i < f->numeroelementos; i++)
         printf("%0.f\n",f->elementos[(f->inicio + i) % TAMANHO]);
@@ -78,10 +73,11 @@ int main()
     while(opcao != 0)
     {
         system("cls");
-        printf("Escolha a opção desejada: \n");
+        printf("**** Escolha a opcao desejada **** \n");
         printf("1. Enfilera\n");
         printf("2. Retira \n");
         printf("3. Mostra a fila\n");
+        printf("4. Destruir a fila\n");
         printf("0. Fim\n");
         scanf("%d", &opcao);
 
