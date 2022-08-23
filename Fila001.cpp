@@ -9,7 +9,7 @@ typedef struct NO{
     int codigo;
     float preco;
     struct NO *prox;
-}NO;
+ }NO;
 
 typedef struct FILA{
     NO *ini;
@@ -87,11 +87,11 @@ int main(){
 
 void menu(){
 	
-	printf("\n##################################");
+	printf("\n-----------------------------------");
 	printf("\n             M.A.P.A.");
-    printf("\n##################################");
+    printf("\n-----------------------------------");
     
-    printf("\n##################################");
+    printf("\n-----------------------------------");
 	void imprimeFila(FILA *f);
 	
     printf("\n---- ---- ---- MENU ---- ---- ----");
@@ -100,7 +100,7 @@ void menu(){
     printf("\n\t3. Imprime lista de livros");
     printf("\n\t4. Esvaziar a Fila");
     printf("\n\t5. Sair");
-    printf("\n\n##################################");
+    printf("\n-----------------------------------");
 }
 
 void inicializaFila(FILA *f){

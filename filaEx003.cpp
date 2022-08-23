@@ -6,9 +6,12 @@ struct fila
 {
     int numeroelementos;
     int inicio;
-    float elementos[TAMANHO];
-    char descricao[20];
+    int codigo;
+    float livro[TAMANHO];
+    char nomeLivro[20];
+    char nomeAutor[20];
     int quantidade;
+    float preco;
 };
 
 typedef struct fila Fila;
@@ -37,11 +40,10 @@ void inserir(Fila *f, float valor,char nam[20],int qtd)
 void retirar(Fila *f)
 {
     float valor;
-    if(f->numeroelementos == 0)
-    {
+    if(f->numeroelementos == 0){
         printf("fila vazia.\n");
         return;
-    } //retira o elemento da fila
+    }                                //retira o elemento da fila
     valor =f->elementos[f->inicio];
     f->inicio = (f->inicio + 1) % TAMANHO;
     f->numeroelementos--;
@@ -74,8 +76,8 @@ int main()
     {
         system("cls");
         printf("**** Escolha a opcao desejada **** \n");
-        printf("1. Enfilera\n");
-        printf("2. Retira \n");
+        printf("1. Enfilerar os livros\n");
+        printf("2. Desenfileirar livros\n");
         printf("3. Mostra a fila\n");
         printf("4. Destruir a fila\n");
         printf("0. Fim\n");
@@ -85,13 +87,13 @@ int main()
         {
         case 1 : //insere
             printf("Digite o codigo: ");
-            scanf("%f", &item);
-            printf("Digite a descricao da peca: ");
-            fflush(stdin);
-            gets(nome);
-            printf("Digite a quantidade de pecas: ");
-            scanf("%d", &qtd);
-            inserir(fila,item,nome,qtd);
+            scanf("%i", &codigo);
+            printf("Digite o nome do livro: ");
+            //fflush(stdin);
+            gets(nomeLivro);
+            printf("Digite o nome do autor: ");
+            gets(nomeAutor);
+            inserir(fila,codigo,nomeLivro,nomeAutor);
             break;
         case 2 : //retira
             retirar(fila);
