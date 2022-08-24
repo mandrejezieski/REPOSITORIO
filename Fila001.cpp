@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
-#define tam 5
+
 
 typedef struct NO{
 	char nomeLivro[20];
@@ -17,7 +17,7 @@ typedef struct FILA{
     NO *fim;
     
 }FILA;
-
+struct NO LISTA;
 void menu();
 void inicializaFila(FILA *f);
 void enfileira(char *nomeLivro, char *nomeAutor, int codigo, float preco, FILA *f);
@@ -28,11 +28,14 @@ void limpaFila(FILA *f);
 int main(){
 	
 	setlocale(LC_ALL, "Portuguese");
+
 	
     int sel=0, codigo=0;
     char nomeLivro[20];
     char nomeAutor[30];
     float preco;
+    //LISTA.ini =0;
+    //LISTA.fim =0;
     FILA *f1 = (FILA*) malloc(sizeof(FILA));
 
     if(f1 == NULL){
@@ -112,14 +115,16 @@ void menu(){
 
 void inicializaFila(FILA *f){
     
-    f->ini = NULL;
-    f->fim = NULL	
+    f->ini = 0;
+    f->fim = 0;
 	
 }
 
 void enfileira(char *nomeLivro, char *nomeAutor, int codigo,float preco,  FILA *f){
     NO *ptr = (NO*) malloc (sizeof(NO));
     
+   
+   
    
 	if(ptr == NULL){
         printf("\nErro de Alocação!");
