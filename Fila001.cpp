@@ -3,7 +3,7 @@
 #include <string.h>
 #include <locale.h>
 #define tam 5
-
+int fim = 0;
 typedef struct NO{
 	char nomeLivro[20];
     char nomeAutor[30];
@@ -94,7 +94,7 @@ int main(){
 void menu(){
 	
 	printf("\n");
-	printf("\n             M.A.P.A. ");
+	printf("\n   M.A.P.A.  -  PEDIDO DE LIVROS ");
 	printf("\nAluno: Misael Andrejezieski");
 	printf("\nR.A.: 2018609-5");
     
@@ -121,7 +121,7 @@ void enfileira(char *nomeLivro, char *nomeAutor, int codigo,float preco,  FILA *
     NO *ptr = (NO*) malloc (sizeof(NO));
     
    
-    if(ptr == NULL){
+	if(fim >= 5){
         printf("\nErro de Alocação!");
     } else{
     	strcpy(ptr->nomeLivro, nomeLivro);
