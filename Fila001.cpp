@@ -28,7 +28,7 @@ void imprimeFilaP(FILA *f);
 void imprimeFila(FILA *f);
 void limpaFila(FILA *f);
 void somaFila(FILA *f);
-float aux=0.0;
+float aux;
 
 void inicializaFila(FILA *f){
     
@@ -177,10 +177,12 @@ void desenfileira(FILA *f){
     if(ptr != NULL){
     	printf("Livro %s", ptr->nomeLivro);
     	printf(" DELETADO.\n");
+    	aux = aux - ptr->preco;
         f->ini = ptr->prox;
         ptr->prox = NULL;
         free(ptr);
-        
+		printf("\n Diminuindo:R$ %.f",ptr->preco);
+        printf("\n Soma: R$ %.f\n",aux);
         	system("pause");
    			system("cls");
         if(f->ini == NULL){
@@ -205,7 +207,7 @@ void imprimeFilaP(FILA *f){
             ptr = ptr->prox;
             
         }
-		printf("\nA soma de todos os livros é: R$ %.2f",aux);
+		printf("\nA soma de todos os livros é: R$%.2f\n",aux);
     }else{
         printf("\nFila Vazia.\n");
         
@@ -259,16 +261,4 @@ void limpaFila(FILA *f){
 	    system("pause");
         system("cls"); 
 }
-
-float somaFila(float aux, FILA *f){
-	 NO *ptr = f->ini;
-    	while(f->ini < f->fim){
-    		aux = aux + ptr->preco;
-		}
-			return aux;
-		printf("\n soma %f", &aux);
-	    system("pause");
-        system("cls"); 
-}
-
 
