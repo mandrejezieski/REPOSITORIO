@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int const MAXTAM=1000;
+int const MAXTAM=5;
 
 int Frente, Tras;
 int Fila[MAXTAM];
@@ -70,21 +70,20 @@ int main(){
     Fila_Enfileirar(5);
     Fila_Enfileirar(2);
     Fila_Enfileirar(7);
+    Fila_Enfileirar(5);
+    Fila_Enfileirar(2);
+    Fila_Enfileirar(7);
 
-    printf("\n\nTamanho:%d\n\n",Fila_Tamanho());
-
-
-    while( Fila_Desenfileirar(Valor) ){
-        printf("\nValor:%d\n",Valor);
-    }
+    printf("\nTamanho:%d\n",Fila_Tamanho());
     
+    printf("\nValor unserido: %d\n\n",&Fila_Enfileirar[1]);
 
-    /*
+
     if( Fila_Desenfileirar(Valor) ){
-        printf("\n\nValor:%d\n\n",Valor);
+        printf("\nValor deletado: %d\n\n",Valor);
     }else{
-        printf("\n\nFila Vazia\n\n");
-    }*/
+    	printf("Fila vazia.\n");
+	}
 
     system("pause");
     return 0;
