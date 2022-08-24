@@ -1,92 +1,82 @@
 #include <stdio.h>
-#include <stdlib.h>
-
-int const MAXTAM=5;
-
-int Frente, Tras;
-int Fila[MAXTAM];
-
-void Fila_Construtor(){
-    Frente=0;
-    Tras=-1;
-}
-
-bool Fila_Vazia(){
-    if(Frente>Tras){
-        return true;
-    }else{
-        return false;
+# define SIZE 100
+void enqueue();
+void dequeue();
+void show();
+int inp_arr[SIZE];
+int Rear = - 1;
+int Front = - 1;
+main()
+{
+    int ch;
+    while (1)
+    {
+        printf("1.Enqueue Operation\n");
+        printf("2.Dequeue Operation\n");
+        printf("3.Display the Queue\n");
+        printf("4.Exit\n");
+        printf("Enter your choice of operations : ");
+        scanf("%d", &ch);
+        switch (ch)
+        {
+            case 1:
+            enqueue();
+            break;
+            case 2:
+            dequeue();
+            break;
+            case 3:
+            show();
+            break;
+            case 4:
+            //exit(0);
+            default:
+            printf("Incorrect choice \n");
+        } 
+    } 
+} 
+ 
+void enqueue()
+{
+    int insert_item;
+    if (Rear == SIZE - 1)
+       printf("Overflow \n");
+    else
+    {
+        if (Front == - 1)
+      
+        Front = 0;
+        printf("Element to be inserted in the Queue\n : ");
+        scanf("%d", &insert_item);
+        Rear = Rear + 1;
+        inp_arr[Rear] = insert_item;
     }
-
-    //return Frente>Tras;
-}
-
-bool Fila_Cheia(){
-    if(Tras==MAXTAM-1){
-        return true;
-        printf("Fila cheia.001");
-    }else{
-        return false;
+} 
+ 
+void dequeue()
+{
+    if (Front == - 1 || Front > Rear)
+    {
+        printf("Underflow \n");
+        return ;
     }
-}
-
-bool Fila_Enfileirar(int valor){
-    if(Fila_Cheia()){
-        return false;
-    }else{
-        Tras++;
-        Fila[Tras]=valor;
-        return true;
+    else
+    {
+        printf("Element deleted from the Queue: %d\n", inp_arr[Front]);
+        Front = Front + 1;
     }
-}
-
-bool Fila_Desenfileirar(int &valor){
-    if(Fila_Vazia()){
-        return false;
-    }else{
-        valor=Fila[Frente];
-        Frente++;
-        return true;
-    }
-}
-
-bool Fila_Get(int &valor){
-    if(Fila_Vazia()){
-        return false;
-    }else{
-        valor=Fila[Frente];
-        return true;
-    }
-}
-
-int Fila_Tamanho(){
-    return (Tras - Frente)+1;
-}
-
-typedef struct NO{
-	char nomeLivro[20];
-    char nomeAutor[30];
-    int codigo;
-    float preco;
-    struct NO *prox;
- }NO;
-
-int main(){
-    int Valor;
-    Fila_Construtor();
-
-
-    printf("\nTamanho:%d\n",Fila_Tamanho());
+} 
+ 
+void show()
+{
     
-    printf("\nValor unserido: %d\n\n",&Fila_Enfileirar[1]);
-
-
-    if( Fila_Desenfileirar(Valor) ){
-        printf("\nValor deletado: %d\n\n",Valor);
-    }else{
-    	printf("Fila vazia.\n");
-	}
-
-    system("pause");
-    return 0;
+    if (Front == - 1)
+        printf("Empty Queue \n");
+    else
+    {
+        printf("Queue: \n");
+        for (int i = Front; i <= Rear; i++)
+            printf("%d ", inp_arr[i]);
+        printf("\n");
+    }
 }
