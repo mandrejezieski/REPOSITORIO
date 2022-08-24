@@ -11,9 +11,19 @@ typedef struct NO{
  }NO;
 
 typedef struct FILA{
+	
     NO *ini;
     NO *fim;
 }FILA;
+
+bool Fila_Cheia(){
+    if(fim==5){
+        return true;
+        printf("Fila cheia.001");
+    }else{
+        return false;
+    }
+}
 
 void menu();
 void inicializaFila(FILA *f);

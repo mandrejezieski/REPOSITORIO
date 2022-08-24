@@ -24,6 +24,7 @@ bool Fila_Vazia(){
 bool Fila_Cheia(){
     if(Tras==MAXTAM-1){
         return true;
+        printf("Fila cheia.001");
     }else{
         return false;
     }
@@ -62,17 +63,18 @@ int Fila_Tamanho(){
     return (Tras - Frente)+1;
 }
 
+typedef struct NO{
+	char nomeLivro[20];
+    char nomeAutor[30];
+    int codigo;
+    float preco;
+    struct NO *prox;
+ }NO;
 
 int main(){
     int Valor;
     Fila_Construtor();
 
-    Fila_Enfileirar(5);
-    Fila_Enfileirar(2);
-    Fila_Enfileirar(7);
-    Fila_Enfileirar(5);
-    Fila_Enfileirar(2);
-    Fila_Enfileirar(7);
 
     printf("\nTamanho:%d\n",Fila_Tamanho());
     
