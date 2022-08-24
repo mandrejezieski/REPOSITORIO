@@ -38,7 +38,7 @@ void inicializaFila(FILA *f){
 int main(){
 	
 	setlocale(LC_ALL, "Portuguese");
-
+	float aux=0;
     int sel=0; int codigoref=0; int cod =0;
     char nomeLivro[20];
     char nomeAutor[30];
@@ -61,9 +61,8 @@ int main(){
             scanf("%d", &sel);
             switch (sel){
             case 1: 
-                float aux;
             	if(codigoref < f1->tam){
-            		 codigoref ++;
+					 codigoref ++;
             		 //printf("\nReferência: %d",codigoref);
             		 //printf("\nCódigo do livro: ");
             		 //scanf("%d",&cod);
@@ -76,10 +75,6 @@ int main(){
                		 printf("\nPreço do livro: ");
                		 scanf("%f",&preco);
                		 enfileira(nomeLivro, nomeAutor, codigoref, cod, preco, f1);
-               		 int i;
-						for(i=0;i<f1->tam;i++){
-								aux = preco+i;
-						}
                		 break;
 				}else{
 					printf("\nFila Cheia. 002\n");
@@ -104,15 +99,17 @@ int main(){
                 codigoref = 0;
                 break;
 
+			case 5:
+				printf("\nA soma de todos os livros na fila é: R$ %.2f",aux);
+				system("pause");
+				system("cls");
+				break;
+				
             case 6: 
                 printf("\nPrograma finalizado ;) \n");
                 system("pause");
                 exit(0);
                 break;
-
-			case 5:
-				printf("\nA soma de todos os livros na fila é: R$ %.2f",aux);
-				break;
 				
             default: 
                 printf("\nOpção Inválida!");
@@ -120,14 +117,9 @@ int main(){
             }
         }
     }
-
-
-		
-
+	
    	 return 0;
 }	
-
-
 
 void menu(){
 	printf("\n");
