@@ -15,9 +15,10 @@ typedef struct NO{
 typedef struct FILA{
     NO *ini;
     NO *fim;
-    
+    int tam;  
 }FILA;
-struct NO LISTA;
+
+struct NO;
 void menu();
 void inicializaFila(FILA *f);
 void enfileira(char *nomeLivro, char *nomeAutor, int codigo, float preco, FILA *f);
@@ -30,14 +31,13 @@ int main(){
 	setlocale(LC_ALL, "Portuguese");
 
 	
-    int sel=0, codigo=0;
+    int sel=0; int codigo=0;
     char nomeLivro[20];
     char nomeAutor[30];
     float preco;
-    //LISTA.ini =0;
-    //LISTA.fim =0;
     FILA *f1 = (FILA*) malloc(sizeof(FILA));
-
+	
+	f1->ini= NULL;
     if(f1 == NULL){
         printf("\nErro de alocacao!");
         exit(-1);
@@ -50,17 +50,36 @@ int main(){
             scanf("%d", &sel);
             switch (sel){
             case 1: 
-				printf("\nCódigo: ");
+                 
+            	
+            	if(codigo < 5){
+            		 codigo ++;
+               		 printf("\nNome do livro: ");
+               		 scanf("%s",nomeLivro);
+               		 printf("\nNome do autor: ");
+               		 scanf("%s",nomeAutor);
+               		 printf("\nPreço do livro: ");
+               		 scanf("%f",&preco);
+               		 enfileira(nomeLivro, nomeAutor, codigo, preco, f1);
+               		 break;
+				}else{
+					printf("Fila Cheia. 002");
+					system("pause");
+					system("cls");
+					break;
+				}
+				
+				/*printf("\nCódigo: ");
                 scanf("%d",&codigo);
                 printf("\nNome do livro: ");
                 scanf("%s",nomeLivro);
                 printf("\nNome do autor: ");
                 scanf("%s",nomeAutor);
                 printf("\nPreço do livro: ");
-                scanf("%f",&preco);
+                scanf("%f",&preco);*/
                 
 
-                enfileira(nomeLivro, nomeAutor, codigo, preco, f1);
+                //enfileira(nomeLivro, nomeAutor, codigo, preco, f1);
                 break;
 
             case 2: 
@@ -76,7 +95,6 @@ int main(){
                 break;
 
             case 5: 
-                //limpaFila(f1);
                 printf("\nPrograma finalizado ;) \n");
                 system("pause");
                 exit(0);
@@ -116,37 +134,32 @@ void menu(){
 void inicializaFila(FILA *f){
     
     f->ini = 0;
-    f->fim = 0;
-	
+    f->fim = 0;	
 }
 
 void enfileira(char *nomeLivro, char *nomeAutor, int codigo,float preco,  FILA *f){
     NO *ptr = (NO*) malloc (sizeof(NO));
-    
-   
-   
-   
+    ;
 	if(ptr == NULL){
-        printf("\nErro de Alocação!");
+        printf("\nErro de Alocação!\n");
     } else{
     	strcpy(ptr->nomeLivro, nomeLivro);
         strcpy(ptr->nomeAutor, nomeAutor);
         ptr->codigo = codigo;
         ptr->preco = preco;
         ptr->prox = NULL;
-        if(f->ini == NULL){
-            f->ini = ptr;
-        } else{
-            f->fim->prox = ptr; 
-        }
-    
-    f->fim = ptr;
-    printf("\nLivro %s", ptr->nomeLivro);
-    printf(" insirido na fila.\n");
-    }
-    system("pause");
-    system("cls");
-}
+        	if(f->ini == NULL){
+           		 f->ini = ptr;
+        	} else{
+           		 f->fim->prox = ptr; 
+        	}
+   			 f->fim = ptr;
+    		printf("\nLivro %s", ptr->nomeLivro);
+    		printf(" insirido na fila.\n");
+    	}
+    	system("pause");
+    	system("cls");
+	}
 
 void desenfileira(FILA *f){
     NO *ptr = f->ini;
@@ -157,11 +170,11 @@ void desenfileira(FILA *f){
         f->ini = ptr->prox;
         ptr->prox = NULL;
         free(ptr);
+        
         	system("pause");
    			system("cls");
         if(f->ini == NULL){
            f->fim = NULL;
-         
         }
     } else{
         printf("\nFila Vazia.\n");
