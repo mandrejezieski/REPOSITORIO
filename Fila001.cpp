@@ -55,13 +55,13 @@ int main(){
         
         while (sel != 5){
        		imprimeFilaP(f1);
-			void imprimeFilaP(FILA *f);
+			
             menu();
             printf("\nOpcao: ");
             scanf("%d", &sel);
             switch (sel){
             case 1: 
-                
+                float aux;
             	if(codigoref < f1->tam){
             		 codigoref ++;
             		 //printf("\nReferência: %d",codigoref);
@@ -76,6 +76,10 @@ int main(){
                		 printf("\nPreço do livro: ");
                		 scanf("%f",&preco);
                		 enfileira(nomeLivro, nomeAutor, codigoref, cod, preco, f1);
+               		 int i;
+						for(i=0;i<f1->tam;i++){
+								aux = preco+i;
+						}
                		 break;
 				}else{
 					printf("\nFila Cheia. 002\n");
@@ -100,12 +104,16 @@ int main(){
                 codigoref = 0;
                 break;
 
-            case 5: 
+            case 6: 
                 printf("\nPrograma finalizado ;) \n");
                 system("pause");
                 exit(0);
                 break;
 
+			case 5:
+				printf("\nA soma de todos os livros na fila é: R$ %.2f",aux);
+				break;
+				
             default: 
                 printf("\nOpção Inválida!");
                 break;
@@ -132,7 +140,8 @@ void menu(){
     printf("\n\t2. Deleta livro");
     printf("\n\t3. Imprime lista de livros");
     printf("\n\t4. Esvaziar a Fila");
-    printf("\n\t5. Sair");
+    printf("\n\t5. Soma dos livros");
+    printf("\n\t6. Sair");
     printf("\n");
 }
 
@@ -205,6 +214,8 @@ void imprimeFilaP(FILA *f){
     }
    	
 }
+
+
 
 void imprimeFila(FILA *f){
     NO *ptr = f->ini;
