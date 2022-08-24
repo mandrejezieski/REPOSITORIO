@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <locale.h>
+#define tam 5
 
 typedef struct NO{
 	char nomeLivro[20];
@@ -11,19 +13,10 @@ typedef struct NO{
  }NO;
 
 typedef struct FILA{
-	
     NO *ini;
     NO *fim;
+    
 }FILA;
-
-bool Fila_Cheia(){
-    if(fim==5){
-        return true;
-        printf("Fila cheia.001");
-    }else{
-        return false;
-    }
-}
 
 void menu();
 void inicializaFila(FILA *f);
@@ -33,6 +26,9 @@ void imprimeFila(FILA *f);
 void limpaFila(FILA *f);
 
 int main(){
+	
+	setlocale(LC_ALL, "Portuguese");
+	
     int sel=0, codigo=0;
     char nomeLivro[20];
     char nomeAutor[30];
@@ -51,13 +47,13 @@ int main(){
             scanf("%d", &sel);
             switch (sel){
             case 1: 
-				printf("\nCodigo: ");
+				printf("\nCódigo: ");
                 scanf("%d",&codigo);
                 printf("\nNome do livro: ");
                 scanf("%s",nomeLivro);
                 printf("\nNome do autor: ");
                 scanf("%s",nomeAutor);
-                printf("\nPreco do livro: ");
+                printf("\nPreço do livro: ");
                 scanf("%f",&preco);
                 
 
@@ -84,7 +80,7 @@ int main(){
                 break;
 
             default: 
-                printf("\nOpcao Invalida!");
+                printf("\nOpção Inválida!");
                 break;
             }
         }
@@ -115,7 +111,7 @@ void menu(){
 }
 
 void inicializaFila(FILA *f){
-
+    
     f->ini = NULL;
     f->fim = NULL;	
 	
@@ -126,7 +122,7 @@ void enfileira(char *nomeLivro, char *nomeAutor, int codigo,float preco,  FILA *
     
    
     if(ptr == NULL){
-        printf("\nErro de Alocacao!");
+        printf("\nErro de Alocação!");
     } else{
     	strcpy(ptr->nomeLivro, nomeLivro);
         strcpy(ptr->nomeAutor, nomeAutor);
@@ -175,10 +171,10 @@ void imprimeFila(FILA *f){
     if(ptr != NULL){
         while(ptr != NULL){
             printf("\n");
-            printf("\nCodigo do livro: %d", ptr->codigo);
+            printf("\nCódigo do livro: %d", ptr->codigo);
             printf("\nNome do livro: %s", ptr->nomeLivro);
             printf("\nNome do autor: %s", ptr->nomeAutor);
-            printf("\nPreco do livro: R$ %.2f", ptr->preco);
+            printf("\nPreço do livro: R$ %.2f", ptr->preco);
             printf("\n\n");
             ptr = ptr->prox;
             printf("     ----- ---- ----- -----\n");
