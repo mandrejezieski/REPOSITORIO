@@ -27,6 +27,8 @@ void desenfileira(FILA *f);
 void imprimeFilaP(FILA *f);
 void imprimeFila(FILA *f);
 void limpaFila(FILA *f);
+void somaFila(FILA *f);
+float aux=0.0;
 
 void inicializaFila(FILA *f){
     
@@ -42,7 +44,7 @@ int main(){
     int sel=0; int codigoref=0; int cod =0;
     char nomeLivro[20];
     char nomeAutor[30];
-    float preco;
+    float preco=0;
     FILA *f1 = (FILA*) malloc(sizeof(FILA));
 	f1->tam=5;
 	f1->ini= NULL;
@@ -76,12 +78,14 @@ int main(){
                		 scanf("%f",&preco);
                		 enfileira(nomeLivro, nomeAutor, codigoref, cod, preco, f1);
                		 break;
+							
 				}else{
-					printf("\nFila Cheia. 002\n");
+					printf("\nFila Cheia.\n");
 					system("pause");
 					system("cls");
 					break;
 				}
+				
                 break;
 
             case 2: 
@@ -100,9 +104,7 @@ int main(){
                 break;
 
 			case 5:
-				printf("\nA soma de todos os livros na fila é: R$ %.2f",aux);
-				system("pause");
-				system("cls");
+				
 				break;
 				
             case 6: 
@@ -140,8 +142,9 @@ void menu(){
 
 
 void enfileira(char *nomeLivro, char *nomeAutor, int codigoref,int cod, float preco,  FILA *f){
+	
     NO *ptr = (NO*) malloc (sizeof(NO));
-    ;
+    
 	if(ptr == NULL){
         printf("\nErro de Alocação!\n");
     } else{
@@ -151,6 +154,10 @@ void enfileira(char *nomeLivro, char *nomeAutor, int codigoref,int cod, float pr
         ptr->cod = cod;
         ptr->preco = preco;
         ptr->prox = NULL;
+        
+        aux = aux + preco;
+           		 printf("\n soma %.2f\n",aux);
+           		 
         	if(f->ini == NULL){
            		 f->ini = ptr;
         	} else{
@@ -159,7 +166,6 @@ void enfileira(char *nomeLivro, char *nomeAutor, int codigoref,int cod, float pr
    			 f->fim = ptr;
     		printf("\nLivro %s", ptr->nomeLivro);
     		printf(" inserido na fila.\n");
-    		
     	}
     	system("pause");
     	system("cls");
@@ -197,9 +203,9 @@ void imprimeFilaP(FILA *f){
         	printf("\nCódigo: %d", ptr->cod);
             printf(" Livro: %s", ptr->nomeLivro);
             ptr = ptr->prox;
-             
+            
         }
-
+		printf("\nA soma de todos os livros é: R$ %.2f",aux);
     }else{
         printf("\nFila Vazia.\n");
         
@@ -210,6 +216,7 @@ void imprimeFilaP(FILA *f){
 
 
 void imprimeFila(FILA *f){
+	
     NO *ptr = f->ini;
     printf("     ----- LISTA DE LIVROS -----");
     if(ptr != NULL){
@@ -249,6 +256,17 @@ void limpaFila(FILA *f){
     } else {
         printf("\nFila Vazia!\n");    
     }	
+	    system("pause");
+        system("cls"); 
+}
+
+float somaFila(float aux, FILA *f){
+	 NO *ptr = f->ini;
+    	while(f->ini < f->fim){
+    		aux = aux + ptr->preco;
+		}
+			return aux;
+		printf("\n soma %f", &aux);
 	    system("pause");
         system("cls"); 
 }
