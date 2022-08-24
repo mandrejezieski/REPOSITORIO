@@ -119,7 +119,6 @@ void limpa(){
     	
         printf(" -------- Lista --------- \n");
         for (int i = inicio; i <= fim; i++)
-            printf("%d ", inp_arr[i]);
             inicio = NULL;
             fim = NULL;
         printf("\n----------------------------\n");
