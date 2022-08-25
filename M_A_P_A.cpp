@@ -2,23 +2,26 @@
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
+#define tamanho 5
 
-
-typedef struct NO{
+//CRIANDO A LIVRO
+typedef struct NO{ 
+	int cod;
 	char nomeLivro[20];
     char nomeAutor[30];
     int codigoref;
-    int cod;
     float preco;
     struct NO *prox;
  }NO;
 
-typedef struct FILA{
+//CRIANDO A FILA
+typedef struct FILA{ 
     NO *ini;
     NO *fim;
     int tam;  
 }FILA;
 
+//PROTOTIPOS
 struct NO;
 void menu();
 void inicializaFila(FILA *f);
@@ -30,6 +33,8 @@ void limpaFila(FILA *f);
 void somaFila(FILA *f);
 float aux;
 
+
+//INICIALIZANDO A FILA
 void inicializaFila(FILA *f){
     
     f->ini = 0;
@@ -37,11 +42,14 @@ void inicializaFila(FILA *f){
 	f->tam =5;	
 }
 
+
+//METODO PADRÃO
 int main(){
 	
-	setlocale(LC_ALL, "Portuguese");
-	float aux=0;
-    int sel=0; int codigoref=0; int cod =0;
+	setlocale(LC_ALL, "Portuguese");// PARA APARECER OS ACENTO
+	float aux=0; //VARIAVEL PARA AUXILIAR, PRICIPALMENTE NA SOMA
+    int sel=0; int codigoref=0; int cod =0; // VARIÁVEIS DE CONTROLA
+    //INICIANDO AS VARIÁVEIS
     char nomeLivro[20];
     char nomeAutor[30];
     float preco=0;
@@ -93,25 +101,24 @@ int main(){
                 //codigoref--;
                 codigoref = codigoref-1;
                 break;
-
-            case 3: 
-                imprimeFila(f1);
-                break;
                 
-            case 4:
+            case 3:
                 limpaFila(f1);
                 codigoref = 0;
                 break;
+                
+            case 4: 
+                imprimeFila(f1);
+                break;
 
-			case 5:
-				
-				break;
-				
-            case 6: 
+			case 5: 
+				printf("\n ## ESPERO TER ME SAINDO BEM. ##)\n\n");
                 printf("\nPrograma finalizado ;) \n");
                 system("pause");
                 exit(0);
                 break;
+				
+				break;
 				
             default: 
                 printf("\nOpção Inválida!");
@@ -132,10 +139,9 @@ void menu(){
     printf("\n---- ---- ---- MENU ---- ---- ----");
     printf("\n\t1. Insere livro");
     printf("\n\t2. Deleta livro");
-    printf("\n\t3. Imprime lista de livros");
-    printf("\n\t4. Esvaziar a Fila");
-    printf("\n\t5. Soma dos livros");
-    printf("\n\t6. Sair");
+    printf("\n\t3. Esvaziar a Fila");
+    printf("\n\t4. Imprime lista de livros");
+    printf("\n\t5. Sair");
     printf("\n");
 }
 
