@@ -1,3 +1,12 @@
+/*
+M.A.P.A. SUB DA DISCIPLINA DE ANALISE E DESENVOLVIMENTO DE SISTEMAS
+Criando uma fila de pedidos de livros
+
+por: Misael andrejezieski
+R.A.: 20118609-5
+
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
