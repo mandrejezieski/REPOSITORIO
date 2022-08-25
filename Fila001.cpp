@@ -124,7 +124,7 @@ int main(){
 }	
 
 void menu(){
-	printf("\n");
+	printf("\n-----------------------------------\n");
 	printf("\n             M.A.P.A. ");
 	printf("\nAluno: Misael Andrejezieski");
 	printf("\nR.A.: 2018609-5");
