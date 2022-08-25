@@ -53,30 +53,28 @@ int main(){
     char nomeLivro[20];
     char nomeAutor[30];
     float preco=0;
+    //ALOCANDO A FILA
     FILA *f1 = (FILA*) malloc(sizeof(FILA));
 	f1->tam=5;
 	f1->ini= NULL;
 	f1->fim= NULL;
-    if(f1 == NULL){
+    if(f1 == NULL){//CONTROLE DE ERRO DE ALOCAÇÃO
         printf("\nErro de alocacao!");
         exit(-1);
-    } else{        
+    } else{    //INICIALIZANDO A FILA DE FATO
         inicializaFila(f1);
         
-        while (sel != 5){
-       		imprimeFilaP(f1);
+        while (sel != 5){// ESTRUTURA DE REPETIÇÃO PARA AS OPÇÕES
+       		imprimeFilaP(f1); // IMPIRMINDO O NOME DOS LIVROS ANTES DO MENU
 			
-            menu();
-            printf("\nOpcao: ");
+            menu();// MENU
+            printf("\nOpcao: ");// EDTRUTURA PARA A ESCOLHA DA OPÇÃO
             scanf("%d", &sel);
-            switch (sel){
-            case 1: 
-            	if(codigoref < f1->tam){
-					 codigoref ++;
-            		 //printf("\nReferência: %d",codigoref);
-            		 //printf("\nCódigo do livro: ");
-            		 //scanf("%d",&cod);
-            		 cod++;
+            switch (sel){ // ESTRUTURA PARA POSSIBILITAR A EXCECUÇÃO DAS OPÇÕES
+            case 1: // ENFILEIRAR
+            	if(codigoref < f1->tam){ // DEFINIR QUE A FILA VAI TER 5 ESPAÇO
+					 codigoref ++; // INCREMENTNDO A REFERÊNCIA
+            		 cod++; // INSERIDO CÓDIGO AUTOMATICAMENTE PARA O USUÁRIO
             		 printf("\nCódigo do livro: %d",cod);
                		 printf("\nNome do livro: ");
                		 scanf("%s",nomeLivro);
@@ -88,7 +86,7 @@ int main(){
                		 break;
 							
 				}else{
-					printf("\nFila Cheia.\n");
+					printf("\nFila Cheia.\n"); // IMPRIME SE A FILA ESTIVER CHEIA
 					system("pause");
 					system("cls");
 					break;
@@ -96,22 +94,21 @@ int main(){
 				
                 break;
 
-            case 2: 
+            case 2: //DESENFILEIRA
                 desenfileira(f1);
-                //codigoref--;
-                codigoref = codigoref-1;
+                codigoref = codigoref-1;// DESENCREMENTANDO A REFERÊNCIA
                 break;
                 
-            case 3:
+            case 3: // LIMPANDO A FILA POR COMPLETA
                 limpaFila(f1);
-                codigoref = 0;
+                codigoref = 0; //ZERANDO A REFERÊNCIA
                 break;
                 
-            case 4: 
+            case 4: // IMPRIMINDO A FILA INTEIRA
                 imprimeFila(f1);
                 break;
 
-			case 5: 
+			case 5:  // FINALIZANDO O PROGRAMA
 				printf("\n ## ESPERO TER ME SAINDO BEM. ##)\n\n");
                 printf("\nPrograma finalizado ;) \n");
                 system("pause");
@@ -120,7 +117,7 @@ int main(){
 				
 				break;
 				
-            default: 
+            default: // PADRÃO 
                 printf("\nOpção Inválida!");
                 break;
             }
@@ -130,6 +127,7 @@ int main(){
    	 return 0;
 }	
 
+// FUNÇÃO PARA O MENU
 void menu(){
 	printf("\n-----------------------------------\n");
 	printf("\n             M.A.P.A. ");
@@ -146,7 +144,7 @@ void menu(){
 }
 
 
-
+// INSTANCIANDO A FILA
 void enfileira(char *nomeLivro, char *nomeAutor, int codigoref,int cod, float preco,  FILA *f){
 	
     NO *ptr = (NO*) malloc (sizeof(NO));
@@ -177,32 +175,34 @@ void enfileira(char *nomeLivro, char *nomeAutor, int codigoref,int cod, float pr
     	system("cls");
 	}
 
+//FUNÇÃO PARA DESENFILEIRAR
 void desenfileira(FILA *f){
     NO *ptr = f->ini;
     
     if(ptr != NULL){
     	printf("Livro %s", ptr->nomeLivro);
-    	printf(" DELETADO.\n");
-    	aux = aux - ptr->preco;
+    	printf(" DELETADO.\n");// INFORMA QUE O LIVRO FOI DELETADO
+    	aux = aux - ptr->preco;// SOMA OS PREÇOS
         f->ini = ptr->prox;
-        ptr->prox = NULL;
+        ptr->prox = NULL;// LISTA QUE SEGUE
         free(ptr);
-		printf("\n Diminuindo:R$ %.f",ptr->preco);
-        printf("\n Soma: R$ %.f\n",aux);
+		printf("\n Diminuindo:R$ %.f",ptr->preco); //VALOR A SER DIMINUIDO DA SOMA DOS PREÇOS
+        printf("\n Soma: R$ %.f\n",aux); // VALOR DA SOMA DOS PREÇOS
         	system("pause");
    			system("cls");
         if(f->ini == NULL){
            f->fim = NULL;
         
         }
-    } else{
+    } else{//IMPRIME SE A FILA ESTIVER VAZIA
         printf("\nFila Vazia.\n");
         system("pause");
         system("cls");
     }
     
 }
-				
+	
+//IMPRIME A LISTA ANTES DO MENU			
 void imprimeFilaP(FILA *f){
     NO *ptr = f->ini;
     printf("     ----- LIVROS -----\n");
@@ -222,7 +222,7 @@ void imprimeFilaP(FILA *f){
 }
 
 
-
+//IMPRIME LISTA 
 void imprimeFila(FILA *f){
 	
     NO *ptr = f->ini;
@@ -249,6 +249,8 @@ void imprimeFila(FILA *f){
         system("cls");
 }
 
+
+//LIMPA LISTA
 void limpaFila(FILA *f){
     NO *ptr = f->ini;
     NO *aux;	 
